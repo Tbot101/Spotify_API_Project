@@ -4,6 +4,7 @@ import requests
 import password
 import sys
 
+
 class lastFmSpotify:
     def __init__(self):
         self.token = password.spotify_token()
@@ -22,20 +23,20 @@ class lastFmSpotify:
         if response.status_code != 200:
             self.exceptionalExceptions(response.status_code, response.text)
         res = response.json()
-        print("Top songs are: \n")
+        song_info = dict()
         for item in res['tracks']['track']:
             name = item['name'].title()
             artist = item['artist']['name'].title()
-            self.song_info[name] = artist
-            print(f"{name} by {artist} \n")
-        print("Getting Songs URI \n")
-        self.get_uri_from_spotify()
-        print("Creating playlist \n")
-        self.create_spotify_playlist()
-        print("Adding songs \n")
-        self.add_songs_to_playlist()
-        print("Songs are as follows: \n")
-        self.list_songs_in_playlist()
+            song_info[name] = artist
+        return song_info
+        # print("Getting Songs URI \n")
+        # self.get_uri_from_spotify()
+        # print("Creating playlist \n")
+        # self.create_spotify_playlist()
+        # print("Adding songs \n")
+        # self.add_songs_to_playlist()
+        # print("Songs are as follows: \n")
+        # self.list_songs_in_playlist()
 
     def get_uri_from_spotify(self):
         for name, artist in self.song_info.items():
@@ -87,7 +88,3 @@ class lastFmSpotify:
         print("Exception occurred with status_code: ", status_code)
         print("Error: ", err)
         sys.exit(0)
-
-if __name__ == '__main__':
-    practice = lastFmSpotify()
-    practice.fetch_songs_from_lastfm()

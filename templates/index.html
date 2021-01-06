@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Spotify App</title>
+</head>
+<body>
+
+<div id="content">
+    {% if template == 'top' %}
+    <table>
+        <tr>
+            <th>Song</th>
+            <th>Artist</th>
+        </tr>
+        {% for song, artist in topsongs.items() %}
+        <tr>
+            <th>{{song}}</th>
+            <th>{{artist}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% elif template == 'create' %}
+    <form method="post">
+
+        <div id="inline">
+            <label>Playlist Name: </label>
+            <input type="text" name="playlist_name">
+        </div><br>
+
+        <div id="inline">
+            <label>Description: </label>
+            <textarea cols="10" rows='2' name="playlist_name"></textarea>
+        </div><br>
+
+        <input type="submit" id="btn" value="Create Playlist">
+
+    </form>
+
+    {% endif %}
+</div>
+
+</body>
+</html>
