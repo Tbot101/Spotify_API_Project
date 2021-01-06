@@ -1,8 +1,10 @@
 def spotify_user_id():
     return 'stealthforce10'
 
+
 def spotify_token():
-    return 'BQDklP3Bc5k7skJYvUiQuMvxTr9ZrTZ9AaQFcZmwzXz34je_VCZvvG9oAqzMoMZsBO64t-r7-5Xawj8S1aa2_biaRsBzfY6cWkBzDracnPBdl53dl9sJmUM35kagKDG_NbqVXohFoix2EUtAJRWYeYmoNUCD5bOG17914BdMHzA2_xwC8wZW'
+    return 'BQB69wG0o7yYGAG-pCHNS4O5RdTaueClZHqbVxGz-LrvuROgtQmHq5-pAwwEgitp4rce4FFnYH6xanLSFQLr9X4bMA1ieYfG0ypAkQ57CJTsUrB5tL0QUWGeIDc1xHlwSlxamYrprU7ViZdLhf45K2Y7Q9xFOSPDTR-9KsQqAOTM0YwSxxnN'
+
 
 def last_fm_api_key():
     return 'f101ad43c4a598af92c91bebdf1383b4'

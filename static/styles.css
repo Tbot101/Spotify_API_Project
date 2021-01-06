@@ -1,28 +1,83 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Comfortaa', cursive;
-    background: #BE93C5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: "Comfortaa", cursive;
+  background: #be93c5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #7bc6cc,
+    #be93c5
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #7bc6cc,
+    #be93c5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 0;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
-td, th {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
+td,
+th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
 }
 
-div #content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+div #content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+}
+
+#mylabel {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+#btn {
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  margin: 0;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4caf50;
+  color: white;
 }

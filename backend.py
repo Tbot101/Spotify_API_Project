@@ -29,28 +29,22 @@ class lastFmSpotify:
             artist = item['artist']['name'].title()
             song_info[name] = artist
         return song_info
-        # print("Getting Songs URI \n")
-        # self.get_uri_from_spotify()
-        # print("Creating playlist \n")
-        # self.create_spotify_playlist()
-        # print("Adding songs \n")
-        # self.add_songs_to_playlist()
-        # print("Songs are as follows: \n")
-        # self.list_songs_in_playlist()
 
-    def get_uri_from_spotify(self):
-        for name, artist in self.song_info.items():
+    def get_uri_from_spotify(self, song_info):
+        uri_list = []
+        for name, artist in song_info.items():
             url = f"https://api.spotify.com/v1/search?q=track%3A{name}+artist%3A{artist}&type=track&limit=5"
             response = requests.get(url, headers=self.spotify_headers)
             res = response.json()
             output_uri = res['tracks']['items']
             uri = output_uri[0]['uri']
-            self.uri.append(uri)
+            uri_list.append(uri)
+        return uri_list
 
-    def create_spotify_playlist(self):
+    def create_spotify_playlist(self, name, desc):
         data = {
-            "name": "Last FM Songs",
-            "description": "Top songs on Last FM created via API",
+            "name": name,
+            "description": desc,
             "public": False
         }
         data = json.dumps(data)
@@ -59,30 +53,33 @@ class lastFmSpotify:
         if response.status_code == 201:
             print("Successfully created Spotify Playlist")
             id_number = response.json()
-            self.playlist_id = id_number["id"]
+            return id_number["id"]
         else:
             self.exceptionalExceptions(response.status_code, response.text)
         print("Created playlist")
 
-    def add_songs_to_playlist(self):
-        uri_list = json.dumps(self.uri)
-        url = f"https://api.spotify.com/v1/playlists/{self.playlist_id}/tracks"
-        response = requests.post(url, data=uri_list, headers=self.spotify_headers)
+    def add_songs_to_playlist(self, uri_list, playlist_id):
+        uris = json.dumps(uri_list)
+        url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+        response = requests.post(
+            url, data=uris, headers=self.spotify_headers)
         if response.status_code == 201:
             print("Songs added successfully")
         else:
             self.exceptionalExceptions(response.status_code, response.text)
 
-    def list_songs_in_playlist(self):
+    def list_songs_in_playlist(self, playlist_id):
         self.playlist_id = "2m33AWbDAIO4aQP119JEhe"
-        url = f"https://api.spotify.com/v1/playlists/{self.playlist_id}/tracks"
+        url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
         response = requests.get(url, headers=self.spotify_headers)
         if response.status_code != 200:
             self.exceptionalExceptions(response.status_code, response.text)
         else:
             res = response.json()
+            songs = []
             for item in res['items']:
-                pprint(item['track']['name'])
+                songs.append(item['track']['name'])
+        return songs
 
     def exceptionalExceptions(self, status_code, err):
         print("Exception occurred with status_code: ", status_code)
